@@ -5,7 +5,7 @@ function subtract(a, b) {
 
 // Addition
 function add(a, b) {
-    // return a + b;
+     return a + b;
 }
 
 
@@ -25,6 +25,9 @@ function divide(a, b) {
 
 // Examples
 let resultAddition = add(5, 3);
+let resultAddition1 = add(6, 3);
+let resultAddition2 = add(7, 3);
+
 let resultSubtraction = subtract(10, 4);
 let resultMultiplication = multiply(2, 6);
 let resultDivision = divide(8, 2);
@@ -32,6 +35,10 @@ let resultDivisionByZero = divide(10, 0);
 
 // Print results to the console
 console.log("Result of addition:", resultAddition);
+console.log("Result of addition1:", resultAddition1);
+console.log("Result of addition2:", resultAddition2);
+
+
 console.log("Result of subtraction:", resultSubtraction);
 console.log("Result of multiplication:", resultMultiplication);
 console.log("Result of division:", resultDivision);
