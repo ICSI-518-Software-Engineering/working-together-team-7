@@ -17,7 +17,7 @@ function multiply(a, b) {
 // Division
 function divide(a, b) {
     if (b !== 0) {
-        // return a / b;
+        return a / b;
     } else {
         return "Cannot divide by zero";
     }
@@ -31,7 +31,7 @@ let resultAddition2 = add(7, 3);
 let resultSubtraction = subtract(10, 4);
 let resultMultiplication = multiply(2, 6);
 let resultDivision = divide(8, 2);
-let resultDivisionByZero = divide(10, 0);
+let resultDivisionByZero = divide(10, 2);
 
 // Print results to the console
 console.log("Result of addition:", resultAddition);
