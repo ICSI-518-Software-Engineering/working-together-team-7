@@ -57,4 +57,48 @@ const Home = () => {
       </div>
     );
   };
-}
+   // Render the carousel with its items and controls
+   return (
+    <>
+      <section id="showcase">
+        <div id="myCarousel" className="carousel slide">
+          <div className="carousel-inner">
+            {renderCarouselItem(
+              0,
+              "Discover Music That Resonates With Your Feelings",
+              "Capture your expression with a simple click or upload a photo to let MeloMood read your emotions. Our advanced FER technology analyzes your facial expressions and instantly curates a playlist to harmonize with your current mood. Immerse yourself in a musical experience that truly understands you."
+            )}
+            {/* {renderCarouselItem(
+              1,
+              "Personalized Style Recommendations",
+              "Not sure what suits you best? Let us be your personal stylist! Our AI-powered recommendations will help you find the perfect outfit tailored to your preferences and body type."
+            )}
+            {renderCarouselItem(
+              2,
+              "Sustainable Fashion Choices",
+              "Make a positive impact on the environment and look fabulous at the same time. Discover our selection of sustainable fashion options that don't compromise on style."
+            )} */}
+          </div>
+
+          <a
+            href="#myCarousel"
+            className=""
+            onClick={handlePrev}
+          >
+            <span className="carousel-control-prev-icon"></span>
+          </a>
+
+          <a
+            href="#myCarousel"
+            className=""
+            onClick={handleNext}
+          >
+            <span className="carousel-control-next-icon"></span>
+          </a>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Home;
