@@ -258,4 +258,153 @@ return () => {
   document.body.removeChild(script);
 };
 }, []);
-
+// Return the JSX structure for rendering the MatchTrends component
+return (
+  <>
+    {base64 != null ? (
+      // If base64 image data is available, display the image and input field
+      <div className="drag_drop">
+        <img
+          className="CAPTURE_EMOTIONS_img"
+          alt="tred_match_img"
+          src={base64}
+        />
+      </div>
+    ) : showWebcam ? (
+      <div className="drag_drop webcam-container">
+        <Webcam
+          audio={false}
+          ref={webcamRef}
+          screenshotFormat="image/jpeg"
+          className="webcam"
+        />
+        <div>
+          <button
+            onClick={capture}
+            className="btn custom_primary_color btn-lg"
+          >
+            Capture
+          </button>
+        </div>
+      </div>
+    ) : (
+      // If base64 image data is not available, display the file uploader and input field
+      <div className="drag_drop">
+        <FileUploader
+          handleChange={handleChange}
+          name="file"
+          types={fileTypes}
+        />
+      </div>
+    )}
+  
+    {/* // Render Match Trend and Reset buttons */}
+    <div className="container d-flex justify-content-center mb-5 mt-5">
+      <button
+        className="btn custom_primary_color btn-lg"
+        style={{ marginRight: 10 }}
+        onClick={handleWebcam}
+      >
+        Capture Emotion
+      </button>
+      <button
+        className="btn custom_primary_color btn-lg"
+        style={{ marginRight: 10 }}
+        onClick={captureEmotionClicked}
+      >
+        Send
+      </button>
+      <button
+        className="btn custom_primary_color btn-lg"
+        style={{ marginLeft: 10 }}
+        onClick={resetTrend}
+      >
+        Reset
+      </button>
+    </div>
+    {/* // Render the matched trend cards or loading skeletons */}
+    <div className="container mt-5 mb-5">
+      <div className="row">
+        {isLoading ? (
+          <div className="col-md-3 col-sm-4 mb-4 item d-flex">
+            {skeleton_loader.map((skeleton, i) => {
+              return (
+                <Skeleton
+                  key={i}
+                  style={{ height: 250, width: 250, marginLeft: 15 }}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          matchtrendVal?.map((trend, i) => {
+            return (
+              <div className="col-md-3 col-sm-4 mb-4 item" key={i}>
+                <div className="card item-card card-block trend_card">
+                  <img src={trend.img} alt="Photo of sunset" />
+                  <div className={"trend_card_body"}>
+                    <h5 className="item-card-title mt-3 mb-3">
+                      {trend.title}
+                    </h5>
+                    <div className="d-flex justify-content-between">
+                      <p className="card-text">{trend.price}</p>
+                      {trend.favorite ? (
+                        <img
+                          src={
+                            "img/icons8-heart-ios-16-glyph/icons8-heart-90.png"
+                          }
+                          className="react-icon heart-react-icon"
+                          onClick={() => fillHeartClicked(trend)}
+                        />
+                      ) : (
+                        <img
+                          src={
+                            "img/icons8-favorite-ios-16-glyph/icons8-favorite-90.png"
+                          }
+                          className="react-icon"
+                          onClick={() => emptyHeartClicked(trend)}
+                        />
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })
+        )}
+      </div>
+    </div>
+    <div className="d-flex justify-content-center emotions mb-5">
+      <Link
+        to={${ROUTE_PATHS.SPOTIFY}?emotion=happy}
+        className="happy_emotion mx-3"
+      >
+        <img
+          src="./img/HappyImage.webp"
+          alt="Happy"
+          className={"happy_img"}
+        />{" "}
+      </Link>
+      <Link
+        to={${ROUTE_PATHS.SPOTIFY}?emotion=sad}
+        className="happy_emotion mx-3"
+      >
+        <img src="./img/SadImage.webp" alt="Sad" className={"sad_img"} />
+      </Link>
+      <Link
+        to={${ROUTE_PATHS.SPOTIFY}?emotion=angry}
+        className="happy_emotion mx-3"
+      >
+        <img
+          src="./img/AngryImage.webp"
+          alt="Angry"
+          className={"angry_img"}
+        />{" "}
+      </Link>
+    </div>
+  </>
+  );
+  };
+  
+  // Export the CaptureEmotions component
+  export default CaptureEmotions;
