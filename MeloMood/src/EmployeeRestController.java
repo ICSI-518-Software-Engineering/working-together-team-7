@@ -37,7 +37,25 @@ public class EmployeeRestController {
     }
 
     @PostMapping("/register")
+    public ResponseEntity<?> addUser(@RequestBody RegistrationRequest registrationRequest) {
+        System.out.println("Registration Failed" +  registrationRequest.getUsername() + registrationRequest.getPassword());
 
+        try {
+            // Create a UserDetails object from the RegistrationRequest
+//            String encodedPassword = passwordEncoder.encode(registrationRequest.getPassword());
+            UserDetails user = User.builder()
+                    .username(registrationRequest.getUsername())
+                    .password(registrationRequest.getPassword())
+                    .authorities("ROLE_USER") // Or any default role you wish to assign
+                    .build();
+
+            userDetailsManager.createUser(user);
+            return ResponseEntity.ok(user);
+        } catch (Exception e) {
+            e.printStackTrace(); // Log the exception to get more details about the error
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Registration failed");
+        }
+    }
     }
 
 
